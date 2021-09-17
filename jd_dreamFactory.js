@@ -1026,15 +1026,7 @@ async function joinLeaderTuan() {
     await $.wait(1000)
     res = await updateTuanIdsCDN('https://cdn.jsdelivr.net/gh/Aaron-lv/updateTeam@master/shareCodes/jd_updateFactoryTuanId.json');
   }
-  $.authorTuanIds = [...(res && res.tuanIds || [])]
-  if ($.authorTuanIds && $.authorTuanIds.length) {
-    for (let tuanId of $.authorTuanIds) {
-      if (!tuanId) continue
-      if (!$.canHelp) break;
-      console.log(`\n账号${$.UserName} 参加作者的团 【${tuanId}】`);
-      await JoinTuan(tuanId);
-      await $.wait(1000);
-    }
+ ///
   }
 }
 //可获取开团后的团ID，如果团ID为空并且surplusOpenTuanNum>0，则可继续开团
@@ -1381,9 +1373,8 @@ function shareCodesFormat() {
     if ($.shareCodesArr[$.index - 1]) {
       $.newShareCodes = $.shareCodesArr[$.index - 1].split('@');
     } else {
-      console.log(`由于您第${$.index}个京东账号未提供shareCode,将采纳本脚本自带的助力码\n`)
-      const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
-      $.newShareCodes = inviteCodes[tempIndex].split('@');
+      console.log(`由于您第${$.index}个京东账号未提供shareCode, 请运行code.sh\n`)
+   
     }
     const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
