@@ -278,7 +278,7 @@ function shareCodesFormat() {
       $.log(`由于您第${$.index}个京东账号未提供shareCode, 请运行code.sh`)
  
     }
-    $.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(cur)}`)
+    $.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(currentShareCode)}`)
     resolve();
   })
 }
