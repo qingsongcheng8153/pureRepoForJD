@@ -1284,7 +1284,7 @@ function shareCodesFormat() {
     if ($.shareCodesArr[$.index - 1]) {
       newShareCodes = $.shareCodesArr[$.index - 1].split('@');
     } else {
-      console.log(`由于您第${$.index}个京东账号未提供shareCode, 请运行code.sh`\n`)
+
 
     }
     const readShareCodeRes = await readShareCode();
