@@ -112,18 +112,9 @@ $.appId = 10028;
         }
       }
     }
-    if ($.strMyShareIds && $.strMyShareIds.length && $.canHelp) {
-      console.log(`\n助力作者\n`);
-      for (let j = 0; j < $.strMyShareIds.length && $.canHelp; j++) {
-        console.log(`账号${$.UserName} 去助力 ${$.strMyShareIds[j]}`)
-        $.delcode = false
-        await helpByStage($.strMyShareIds[j])
-        await $.wait(2000)
-        if ($.delcode) {
-          $.strMyShareIds.splice(j, 1)
-          j--
-          continue
-        }
+   // if ($.strMyShareIds && $.strMyShareIds.length && $.canHelp) {
+
+      //  }
       }
     }
   }
