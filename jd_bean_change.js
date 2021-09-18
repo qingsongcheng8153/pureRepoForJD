@@ -133,7 +133,6 @@ async function showMsg() {
       ReturnMessage+=`东东农场：${$.JdFarmProdName}\n`;
     }
   
-    }
   }
   ReturnMessage+=`${$.message}\n\n`;
   allMessage+=ReturnMessage;
