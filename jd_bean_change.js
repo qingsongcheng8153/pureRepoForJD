@@ -116,22 +116,10 @@ async function showMsg() {
 
   ReturnMessage=`📣=============账号${$.index}=============📣\n`
   ReturnMessage+=`账号名称：${$.nickName || $.UserName}\n`;
-  ReturnMessage+=`今日收入：${$.todayIncomeBean}京豆 🐶\n`;
+  ReturnMessage+=`今日收入：${$.todayIncomeBean}京豆 🐶， `;
   ReturnMessage+=`昨日收入：${$.incomeBean}京豆 🐶\n`;
   ReturnMessage+=`昨日支出：${$.expenseBean}京豆 🐶\n`;
   ReturnMessage+=`当前京豆：${$.beanCount}(七天将过期${$.expirejingdou})京豆🐶\n`;
-
-  if(typeof $.JDEggcnt !== "undefined"){
-    ReturnMessage+=`京喜牧场：${$.JDEggcnt}枚鸡蛋\n`;
-  }
-  if(typeof $.JDtotalcash !== "undefined"){
-    ReturnMessage+=`极速金币：${$.JDtotalcash}金币(≈${$.JDtotalcash / 10000}元)\n`;
-  }
-  if(typeof $.JdzzNum !== "undefined"){
-    ReturnMessage+=`京东赚赚：${$.JdzzNum}金币(≈${$.JdzzNum / 10000}元)\n`;
-  }
-  if($.JdMsScore!=0){
-    ReturnMessage+=`京东秒杀：${$.JdMsScore}秒秒币(≈${$.JdMsScore / 1000}元)\n`;
   }
   if($.JdFarmProdName != ""){
     if($.JdtreeEnergy!=0){
@@ -145,16 +133,6 @@ async function showMsg() {
       ReturnMessage+=`东东农场：${$.JdFarmProdName}\n`;
     }
   }
-
-  const response = await await PetRequest('energyCollect');
-  const initPetTownRes = await PetRequest('initPetTown');
-  if (initPetTownRes.code === '0' && initPetTownRes.resultCode === '0' && initPetTownRes.message === 'success') {
-    $.petInfo = initPetTownRes.result;
-    if (response.resultCode === '0') {
-      ReturnMessage += `东东萌宠：${$.petInfo.goodsInfo.goodsName},`;
-      ReturnMessage += `勋章${response.result.medalNum}/${response.result.medalNum+response.result.needCollectMedalNum}块(${response.result.medalPercent}%)\n`;
-      //ReturnMessage += `          已有${response.result.medalNum}块勋章，还需${response.result.needCollectMedalNum}块\n`;
-
     }
   }
   ReturnMessage+=`${$.message}\n\n`;
