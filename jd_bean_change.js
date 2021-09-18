@@ -132,7 +132,7 @@ async function showMsg() {
     } else {
       ReturnMessage+=`东东农场：${$.JdFarmProdName}\n`;
     }
-  }
+  
     }
   }
   ReturnMessage+=`${$.message}\n\n`;
