@@ -2,8 +2,6 @@
 cron "30 10,22 * * *" jd_bean_change.js, tag:资产变化强化版by-ccwav
  */
 
-//更新by ccwav,20210919
-
 const $ = new Env('京东资产变动+活动领取提取');
 const notify = $.isNode() ? require('./sendNotify') : '';
 const JXUserAgent = $.isNode() ? (process.env.JX_USER_AGENT ? process.env.JX_USER_AGENT : ``) : ``;
