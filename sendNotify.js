@@ -12,7 +12,7 @@
  
  
 ///推送关键字筛选
-var textKeyWords =['资产变动','白嫖榜','检测','翻翻乐','新增任务'] 
+var textKeyWords =['资产变动','白嫖榜','检测','新增任务'] 
 var despKeyWords = []
 
 
@@ -185,6 +185,14 @@ if (process.env.PUSH_PLUS_USER) {
  * @param author 作者仓库等信息  例：`本通知 By：https://github.com/whyour/qinglong`
  * @returns {Promise<unknown>}
  */
+// 过期自动转换脚本
+
+//1. 引入exec组件
+const exec = require('child_process').exec;
+
+
+
+
 async function sendNotify(
   text,
   desp,
@@ -192,12 +200,25 @@ async function sendNotify(
   author = '\n\n\n\n请根据上车位置有选择性的查看推送:\n' +
             '推送图片有圣诞树的是当前服务器节点0, 带大欧派的是当前服务器节点1,'
 ) {
+
+// 过期自动转换脚本
+  if(desp.indexOf('失效') != -1){
+      exec('task raw_main_ql_refreshCK.py', function(err,st,std){
+          console.log(err,st,std);
+      })
+      desp += '\n ===> 上述失效CK,已自动执行wskey(如果有的话)转换任务! BooM!'
+  }
+  
+  
+  
   //提供6种通知
   desp += author; //增加作者信息，防止被贩卖等
   await Promise.all([
     serverNotify(text, desp), //微信server酱
     pushPlusNotify(text, desp), //pushplus(推送加)
   ]);
+  
+  
   //由于上述两种微信通知需点击进去才能查看到详情，故text(标题内容)携带了账号序号以及昵称信息，方便不点击也可知道是哪个京东哪个活动
   text = text.match(/.*?(?=\s?-)/g) ? text.match(/.*?(?=\s?-)/g)[0] : text;
   await Promise.all([
@@ -611,8 +632,9 @@ function ChangeUserId(desp) {
 function qywxamNotify(text, desp) {
 
   for (var i in textKeyWords) {
+      console.log('++++++++++')
        console.log(textKeyWords[i]);
-       console.log('======')
+       console.log('=========')
        console.log(text)
        if(text.match(textKeyWords[i])){
             console.log('获取到需要推送的内容, 推送开始...')
